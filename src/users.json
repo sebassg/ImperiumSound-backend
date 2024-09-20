@@ -3,19 +3,19 @@
     "id": "fde47c05-1cab-46d2-9e36-d9d0651fcfb7",
     "nombre": "ssG",
     "email": "sebasss@gmail.com",
-    "contraseña": "hola123456"
+    "passw": "hola123456"
    },
    {
     "id": "715c8340-8c9c-4dd6-b911-480d0fbd4c33",
     "nombre": "ssG",
     "email": "sebasss@gmail.com",
-    "contraseña": "hola123456"
+    "passw": "hola123456"
    },
    {
     "id": "f6e72352-377d-4448-bae5-dd009d973c8a",
     "nombre": "ssG",
     "email": "sebasss@gmail.com",
-    "contraseña": "hola123456"
+    "passw": "hola123456"
     }
    
 ]

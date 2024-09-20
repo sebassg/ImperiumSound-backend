@@ -10,7 +10,7 @@ export class userModel {
 
     static async getId({ id }) {
         const user = users.find(user => user.id === id);
-        return user || null; 
+        return user || false; 
     }
 
     static async create({ input }) {
@@ -37,6 +37,7 @@ export class userModel {
         if(userIndex === -1) return false
 
         users[userIndex] ={
+            id,
             ...userIndex,
             ...input
         }

@@ -5,7 +5,7 @@ const userSchema = z.object({
         required_error: 'nombre es requerido.'
     }),
     email: z.string(),
-    contraseña: z.string()
+    passw: z.string()
     
 })
 

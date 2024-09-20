@@ -1,5 +1,5 @@
-import { userModel } from "../models/mysql/users.js"
-//import { userModel } from "../models/local-file-system/users.js"
+//import { userModel } from "../models/mysql/users.js"
+import { userModel } from "../models/local-file-system/users.js"
 import { validatePartialUser,validateUser } from "../schemas/users.js"
 
 export class userController {
@@ -7,14 +7,17 @@ export class userController {
     static async getAll (req,res) {
 
         const users = await userModel.getAll()
-        res.json(users)
+        res.json(users) 
 
     }
 
     static async getById (req,res) {
         const { id } = req.params
         const user = await userModel.getId({ id })
-        res.json(user)
+        if (!user) {
+            return res.status(404).json({ message: 'user not found' })
+            }
+            res.json(user)
     }
 
     static async create (req,res) {
@@ -35,10 +38,10 @@ export class userController {
         const result = await userModel.delete({ id })
         if(result === false){
 
-            return res.status(404).json({ message: 'Movie not found' })
+            return res.status(404).json({ message: 'user not found' })
 
         }
-        return res.json({ message: 'Movie deleted' })
+        return res.json({ message: 'user deleted' })
 
     }
 
@@ -49,10 +52,19 @@ export class userController {
         if (!result.success){
             
             return res.status(400).json({error: JSON.parse(result.error.message)})
+        } else{
+            const updateUser = await userModel.update({ id, input: result.data })
+            if (updateUser) {
+                res.json(updateUser)
+            }
+             else{
+                 return res.json({ message: 'user not found' })
+            }   
+            
         }
 
-            const updateUser = await userModel.update({ id, input: result.data })
-            res.json(updateUser)
+       
+            
     }
 
     
