@@ -23,10 +23,35 @@ export class userController {
             return res.status(400).json({error: JSON.parse(result.error.message)})
         }
 
-            const newUser = userModel.create({input: result.data})
+            const newUser = await userModel.create({input: result.data})
             res.status(201).json(newUser)
 
 
+    }
+    static async delete (req,res){
+
+        const { id }= req.params
+        const result = await userModel.delete({ id })
+        if(result === false){
+
+            return res.status(404).json({ message: 'Movie not found' })
+
+        }
+        return res.json({ message: 'Movie deleted' })
+
+    }
+
+    static async update (req,res){
+        const { id } = req.params
+        const result =  validatePartialUser(req.body)
+
+        if (!result.success){
+            
+            return res.status(400).json({error: JSON.parse(result.error.message)})
+        }
+
+            const updateUser = await userModel.update({ id, input: result.data })
+            res.json(updateUser)
     }
 
     
