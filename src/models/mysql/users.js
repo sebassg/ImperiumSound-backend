@@ -24,7 +24,7 @@ export class UserModel {
       "SELECT BIN_TO_UUID(id),nombre,email,passw FROM users WHERE BIN_TO_UUID(id) = ?;",
       [id]
     );
-    console.log(user.length);
+   
     if (!user || user.length === 0) {
       return false;
     }
