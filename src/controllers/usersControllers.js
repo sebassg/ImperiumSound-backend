@@ -27,16 +27,19 @@ export class userController {
       return res.status(400).json({ error: JSON.parse(result.error.message) });
     }
     const user = result.data;
-    const hashedPassword = await bcrypt.hash(user.passw, SALT_ROUNDS);
+    const hashedPassword = await bcrypt.hash(user.passw,SALT_ROUNDS);
 
     const createToUser = {
-        ...user,
+        ...user, 
         passw: hashedPassword
     }
 
-    const newUser = await userRepository.createUser({ input: createToUser })
+    const createModel = await userRepository.createUser({ input: createToUser })
+   
 
-    res.status(201).json(newUser.id);
+    res.status(201).json(createModel);
+
+
   }
   static async delete(req, res) {
     const { id } = req.params;

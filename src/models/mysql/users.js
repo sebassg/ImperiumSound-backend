@@ -38,6 +38,13 @@ export class UserModel {
     const [uuidResult] = await connection.query("SELECT UUID() uuid;");
     const [{ uuid }] = uuidResult;
 
+
+    const [validacionUserName] = await connection.query('SELECT userName FROM users WHERE userName = ?;',[userName])
+
+
+    if(validacionUserName.length === 1) {return {mensaje: "el usuario ya existe"}} 
+
+    
     try {
       await connection.query(
         `INSERT INTO users (id, nombre, email, passw,userName)
@@ -46,12 +53,13 @@ export class UserModel {
       );
     } catch (e) {
       throw new Error(e);
-    
+  
     }
     const [user] = await connection.query(
-      "SELECT BIN_TO_UUID(id),nombre,email,passw,userName FROM users WHERE BIN_TO_UUID(id) = ?;",
+      "SELECT BIN_TO_UUID(id),userName FROM users WHERE BIN_TO_UUID(id) = ?;",
       [uuid]
     );
+
     return user;
   }
 
