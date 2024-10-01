@@ -21,9 +21,9 @@ export class LoginModel{
         if(valiLogin.length == 0) return null
             
         
-        const [passw_has] = await connection.query('SELECT passw FROM users WHERE userName = ?;',[userName])
-
-        return passw_has
+        const [user] = await connection.query('SELECT BIN_TO_UUID(id) id, passw, userName, nombre FROM users WHERE userName = ?;',[userName])
+        
+        return user[0]
     }
 
 }
