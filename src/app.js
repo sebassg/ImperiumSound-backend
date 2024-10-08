@@ -1,5 +1,6 @@
 import express, { json } from "express";
 import { usersRouter } from "./routes/users.js";
+import { registroSonoroRouter } from "./routes/registrosSonoros.js";
 import { PORT } from "./config.js";
 import { userController } from "./controllers/usersControllers.js";
 import { corsMiddleware } from "./middlewares/cors.js";
@@ -20,6 +21,8 @@ app.use(jwtMiddleware)
 app.get("/login", LoginController.login) 
 
 app.use('/logout',LoginController.logout)
+
+app.use('/registrosSonoros',registroSonoroRouter)
  
 app.post("/register", userController.create);
 

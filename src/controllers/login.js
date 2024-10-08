@@ -18,7 +18,6 @@ export class LoginController {
       const login = result.data
        const user = await loginRepository.valitLogin({input: login})
 
-       console.log(user.passw);
         if (!user.passw) return res.status(404).json({ error: 'User does not exist' })
             const passw_hash = user.passw
         const isValid = await bcrypt.compare(login.passw, passw_hash) 
@@ -26,7 +25,7 @@ export class LoginController {
         
 
         const token = jwt.sign(
-            {id: user.id, userName: user.userMame, nombre: user.nombre}, 
+            {idUser: user.id, userName: user.userName, nombre: user.nombre}, 
             SECRET_JWT_KEY, {
                 expiresIn: '1h'
             }
