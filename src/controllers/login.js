@@ -6,10 +6,13 @@ import { loginRepository } from "../repository/login.js";
 
 
 
+
 export class LoginController {
 
 
     static async login(req,res){
+        console.log('intete hacer un login')
+
        const  result = validateLogin(req.body)
        if (!result.success) {
         return res.status(400).json({ error: JSON.parse(result.error.message) });
@@ -17,12 +20,14 @@ export class LoginController {
 
       const login = result.data
        const user = await loginRepository.valitLogin({input: login})
-
-        if (!user.passw) return res.status(404).json({ error: 'User does not exist' })
+      
+        if (!user) return res.status(404).json({ error: 'User does not exist' })
+            
             const passw_hash = user.passw
         const isValid = await bcrypt.compare(login.passw, passw_hash) 
         if (!isValid) return res.status(401).json({ error: 'Password is not valid' })
         
+
 
         const token = jwt.sign(
             {idUser: user.id, userName: user.userName, nombre: user.nombre}, 
@@ -30,14 +35,15 @@ export class LoginController {
                 expiresIn: '1h'
             }
         )
-        res.cookie('access_token', token,{
+        
+        res.cookie('access_token', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'strict'
-        });
+        })
 
-
-        return res.send('logeado')
+      return res.json({ message: 'Login successful', token: token });
+       
     }
 
     static async logout(req,res){
@@ -46,5 +52,14 @@ export class LoginController {
 
         return res.json({ mesenjer: 'ok'})
         
+    }
+    static async validToken(req,res){
+        const valid = req.session.user;
+      
+        if(valid){
+            console.log('aqui')
+            return res.json(valid)
+        }
+        return res.status(401).json(valid)
     }
 }
