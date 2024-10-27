@@ -1,7 +1,7 @@
 import express, { json } from "express";
 import { usersRouter } from "./routes/users.js";
 import { registroSonoroRouter } from "./routes/registrosSonoros.js";
-import { PORT } from "./config.js";
+
 import { userController } from "./controllers/usersControllers.js";
 import { corsMiddleware } from "./middlewares/cors.js";
 import { LoginController } from "./controllers/login.js";
@@ -35,6 +35,8 @@ app.use('/registrosSonoros',registroSonoroRouter)
 app.post("/register", userController.create);
 
 app.use("/users", usersRouter);
+
+const PORT = process.env.PORT ?? 3000;
 
 app.listen(PORT, () => {
   console.log(`Server listening on port http://localhost:${PORT}`);
