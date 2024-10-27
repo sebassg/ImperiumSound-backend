@@ -10,8 +10,9 @@ import { loginRepository } from "../repository/login.js";
 export class LoginController {
 
 
+
     static async login(req,res){
-        console.log('intete hacer un login')
+       
 
        const  result = validateLogin(req.body)
        if (!result.success) {
@@ -55,9 +56,9 @@ export class LoginController {
     }
     static async validToken(req,res){
         const valid = req.session.user;
-      
+     
         if(valid){
-            console.log('aqui')
+            
             return res.json(valid)
         }
         return res.status(401).json(valid)

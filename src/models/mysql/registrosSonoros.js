@@ -68,7 +68,7 @@ export class RegistroSonoroModel {
 
 
              const [id] =  await connection.query('SELECT BIN_TO_UUID(id) id FROM users WHERE userName = ?;',[userName])
-             console.log(id)
+            
              const [registros] = await connection.query('SELECT BIN_TO_UUID(id) id,lugar,fechaHora, nivelSonoro FROM registrosSonoros WHERE BIN_TO_UUID(autor) = ?;',[id[0]])
              const result = registros.map(registro => {
                 const fecha = new Date(registro.fechaHora);
