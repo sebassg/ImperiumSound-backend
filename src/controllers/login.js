@@ -39,9 +39,11 @@ export class LoginController {
         
         res.cookie('access_token', token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
+            secure: false,
             sameSite: 'None'
         });
+        
+        console.log('Cookie set:', res.getHeader('Set-Cookie'));
 
       return res.json({ message: 'Login successful', token: token });
        
