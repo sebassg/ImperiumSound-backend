@@ -37,11 +37,11 @@ export class LoginController {
             }
         )
         
-      //  res.cookie('access_token', token, {
-        //    httpOnly: true,
-        //    secure: process.env.NODE_ENV === 'production',
-     //       sameSite: 'none'
-     //   })
+        res.cookie('access_token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'None'
+        });
 
       return res.json({ message: 'Login successful', token: token });
        
