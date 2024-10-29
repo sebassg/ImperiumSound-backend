@@ -1,4 +1,4 @@
-import { RegistroSonoroModel } from "../models/mysql/registrosSonoros.js";
+import { RegistroSonoroModel } from "../models/sqlite/registrosSonoros.js";
 
 
 export class RegistroSonoroRepository{

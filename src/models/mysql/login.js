@@ -22,6 +22,7 @@ export class LoginModel{
             
         
         const [user] = await connection.query('SELECT BIN_TO_UUID(id) id, passw, userName, nombre FROM users WHERE userName = ?;',[userName])
+        console.log(user[0])
         
         return user[0]
     }

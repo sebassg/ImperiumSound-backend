@@ -1,4 +1,5 @@
-import { LoginModel } from "../models/mysql/login.js"
+import { LoginModel } from "../models/sqlite/login.js"
+
 
 
 export class loginRepository{

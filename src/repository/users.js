@@ -1,4 +1,4 @@
- import { UserModel } from "../models/mysql/users.js";
+
 import { UseerModel } from "../models/sqlite/users.js";
 
 // esto tendria mas sentido con una interfase --> no usa logica, solo maneja conexiones a base de datos

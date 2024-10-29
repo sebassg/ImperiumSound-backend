@@ -1,4 +1,5 @@
 import { createClient } from "@libsql/client";
+import { v4 as uuidv4, parse as uuidParse } from 'uuid';
 
 
 
@@ -11,7 +12,7 @@ export class UseerModel {
     static async getAlll() {
         try {
             const result = await turso.execute(
-              "SELECT LOWER(HEX(id)) AS id, nombre, email, passw FROM users;"
+              "SELECT id, nombre, email, passw FROM users;"
             );
             const users = result.rows; 
             return users;
@@ -46,27 +47,31 @@ export class UseerModel {
         
         
             if(validacionUserName.length === 1) {return {mensaje: "el usuario ya existe"}} 
-            const uuidResult = await turso.execute("SELECT UUID() uuid;");
-            const  uuid = uuidResult.rows;
-            console.log(uuid)
-        
+            const uuid = uuidv4();
             
-            try {
-              await turso.execute(
-                `INSERT INTO users (id, nombre, email, passw,userName)
-                  VALUES (LOWER("${uuid}"), ?, ?,?,?);`,
-                [nombre, email, passw, userName]
-              );
-            } catch (e) {
-              throw new Error(e);
-          
-            }
-            const [user] = await turso.execute(
-              "SELECT LOWER(HEX(id)),userName FROM users WHERE LOWER(HEX(?)) = ?;",
-              [uuid]
-            );
+
+
         
-            return user;
+          
+        try {
+         
+          await turso.execute(
+              `INSERT INTO users (id, nombre, email, passw, userName)
+               VALUES (?, ?, ?, ?, ?);`, 
+              [uuid, nombre, email, passw, userName] 
+          );
+      } catch (e) {
+          console.error("Error al insertar el usuario:", e); 
+          throw new Error(e);
+      }
+
+      
+      const user = await turso.execute(
+          "SELECT id, userName FROM users WHERE id = ?;",
+          [uuid] 
+      );
+
+      return user;
           }
        
            
