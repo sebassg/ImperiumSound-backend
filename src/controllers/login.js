@@ -56,6 +56,8 @@ export class LoginController {
     }
     static async validToken(req, res) {
         const valid = req.session.user;
+        const accessToken = req.cookies.access_token;
+        console.log(accessToken)
     
         if (valid) {
             return res.json(valid); 
