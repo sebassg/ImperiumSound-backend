@@ -10,7 +10,7 @@ import { jwtMiddleware } from "./middlewares/jwt.js";
 import cors from 'cors'
 
 const corsOptions = {
-  origin: ['http://localhost:5173','http://192.168.1.8:5173'], 
+  origin: ['http://localhost:5173','http://192.168.1.8:5173', 'https://htg8q1pp-5173.use.devtunnels.ms'], 
   credentials: true
 };
 
@@ -18,7 +18,7 @@ const corsOptions = {
 const app = express();
 app.disable("x-powered-by");
 app.use(json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(cookieParser())
 //app.use(corsMiddleware)
 
