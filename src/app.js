@@ -18,7 +18,7 @@ const corsOptions = {
 const app = express();
 app.disable("x-powered-by");
 app.use(json());
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(cookieParser())
 //app.use(corsMiddleware)
 
