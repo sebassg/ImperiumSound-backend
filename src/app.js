@@ -9,9 +9,18 @@ import cookieParser from "cookie-parser";
 import { jwtMiddleware } from "./middlewares/jwt.js";
 import cors from 'cors'
 
+const allowedOrigins = ['https://htg8q1pp-5173.use.devtunnels.ms', 'http://localhost:5173'];
+
 const corsOptions = {
-  origin: ['http://localhost:5173','http://192.168.1.8:5173', 'https://htg8q1pp-5173.use.devtunnels.ms'], 
-  credentials: true
+  origin: (origin, callback) => {
+    // Permitir solo los orígenes específicos
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('No permitido por CORS'));
+    }
+  },
+  credentials: true // Permitir el envío de credenciales
 };
 
 
