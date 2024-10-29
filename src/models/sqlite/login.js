@@ -14,8 +14,8 @@ export class LoginModel {
         if (valiLogin.length === 0) return null;
 
         const user = await turso.execute('SELECT id, passw, userName, nombre FROM users WHERE userName = ?;', [userName]);
-        console.log(user)
         const resultUser = user.rows;
+        console.log(resultUser)
         
 
         return resultUser[0]
