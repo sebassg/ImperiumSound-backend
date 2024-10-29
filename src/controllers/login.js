@@ -54,13 +54,14 @@ export class LoginController {
         return res.json({ mesenjer: 'ok'})
         
     }
-    static async validToken(req,res){
+    static async validToken(req, res) {
         const valid = req.session.user;
-     
-        if(valid){
-            
-            return res.json(valid)
+    
+        if (valid) {
+            return res.json(valid); 
         }
-        return res.status(401).json(valid)
+        
+        // Devuelve un error claro si el token no es válido
+        return res.status(401).json({ message: "Token no válido" });
     }
 }
