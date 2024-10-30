@@ -30,22 +30,24 @@ export class LoginController {
         
 
 
-        const token = jwt.sign(
-            {idUser: user.id, userName: user.userName, nombre: user.nombre}, 
-            SECRET_JWT_KEY, {
-                expiresIn: '1h'
-            }
-        )
+            const token = jwt.sign(
+                { idUser: user.id, userName: user.userName, nombre: user.nombre }, 
+                SECRET_JWT_KEY, 
+                { expiresIn: '1h' }
+              );
+              
+              res.cookie('access_token', token, {
+                httpOnly: true,             // Solo accesible desde el backend, no JavaScript en el cliente
+                secure: process.env.NODE_ENV === 'production', // Solo HTTPS en producción
+                sameSite: 'None',           // Permite compartir la cookie entre orígenes diferentes
+                maxAge: 60 * 60 * 1000      // Opcional: tiempo de vida en milisegundos (1 hora)
+              });
+              
+              console.log('Cookie set:', res.getHeader('Set-Cookie'));
+              return res.json({ message: 'Login successful' });
         
-        res.cookie('access_token', token, {
-            httpOnly: true,
-            secure: false,
-            sameSite: 'None'
-        });
-        
-        console.log('Cookie set:', res.getHeader('Set-Cookie'));
 
-      return res.json({ message: 'Login successful', token: token });
+      
        
     }
 
