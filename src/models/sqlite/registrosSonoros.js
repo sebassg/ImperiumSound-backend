@@ -1,6 +1,5 @@
-import { createClient } from "@libsql/client"; // Keep Turso client
-import { format } from 'date-fns'; // For date formatting
-import { es } from 'date-fns/locale';
+import { createClient } from "@libsql/client"; 
+
 import { v4 as uuidv4, parse as uuidParse } from 'uuid';
 
 // Create Turso client

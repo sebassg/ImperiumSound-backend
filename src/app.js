@@ -9,7 +9,7 @@ import cookieParser from "cookie-parser";
 import { jwtMiddleware } from "./middlewares/jwt.js";
 import cors from 'cors'
 
-const allowedOrigins = ['https://htg8q1pp-5173.use.devtunnels.ms', 'http://localhost:5173'];
+const allowedOrigins = ['https://htg8q1pp-5173.use.devtunnels.ms', 'http://localhost:5173', 'https://imperiumsound-movile-production.up.railway.app'];
 
 const corsOptions = {
   origin: (origin, callback) => {

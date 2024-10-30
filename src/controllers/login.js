@@ -37,10 +37,10 @@ export class LoginController {
               );
               
               res.cookie('access_token', token, {
-                httpOnly: true,             // Solo accesible desde el backend, no JavaScript en el cliente
-                secure: process.env.NODE_ENV === 'production', // Solo HTTPS en producción
-                sameSite: 'None',           // Permite compartir la cookie entre orígenes diferentes
-                maxAge: 60 * 60 * 1000      // Opcional: tiempo de vida en milisegundos (1 hora)
+                httpOnly: true,             
+                secure: process.env.NODE_ENV === 'production', 
+                sameSite: 'None',           
+                maxAge: 60 * 60 * 1000     
               });
               
               
