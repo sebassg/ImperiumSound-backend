@@ -43,7 +43,7 @@ export class LoginController {
                 maxAge: 60 * 60 * 1000      // Opcional: tiempo de vida en milisegundos (1 hora)
               });
               
-              console.log('Cookie set:', res.getHeader('Set-Cookie'));
+              
               return res.json({ message: 'Login successful' });
         
 
@@ -60,8 +60,8 @@ export class LoginController {
     }
     static async validToken(req, res) {
         const valid = req.session.user;
-        const accessToken = req.cookies.access_token;
-        console.log(accessToken)
+       
+       
     
         if (valid) {
             return res.json(valid); 

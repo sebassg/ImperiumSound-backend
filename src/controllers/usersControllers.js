@@ -52,7 +52,7 @@ export class userController {
 
   static async update(req, res) {
     const { id } = req.session.user;
-    console.log(id)
+  
     const result = validatePartialUser(req.body);
 
     if (!result.success) {
