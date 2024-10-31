@@ -8,8 +8,8 @@ export const turso = createClient({
   authToken: 'eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzAwMDA5NjQsImlkIjoiNTkzNzgwNzUtNGY5My00YTgxLTg3YTktOTdmNjI3YjIzMmFhIn0.WvJtLqZ1H6mBAmw5k2OpK-K_ZUj7A77Fk3TO-tUiJKICKvHw13q7cSeIk7ehzPlFtSSwEgmjep4PVSH_U6C8CA'
 });
 
-export class UseerModel {
-    static async getAlll() {
+export class UserModel {
+    static async getAll() {
         try {
             const result = await turso.execute(
               "SELECT id, nombre, email, passw FROM users;"

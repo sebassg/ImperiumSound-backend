@@ -1,19 +1,19 @@
 
-import { UseerModel } from "../models/sqlite/users.js";
+import { UserModel } from "../models/sqlite/users.js";
 
 // esto tendria mas sentido con una interfase --> no usa logica, solo maneja conexiones a base de datos
 
 export class UserRepository {
   async getAllUsers() {
-    return await UseerModel.getAlll();
+    return await UserModel.getAll
   }
 
   async getUserById({ id }) {
-    return await UseerModel.getById({ id });
+    return await UserModel.getById({ id });
   }
 
   async createUser({ input }) {
-    return await UseerModel.create({ input });
+    return await UserModel.create({ input });
   }
 
   async deleteUser({ id }) {
