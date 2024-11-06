@@ -38,7 +38,7 @@ app.get("/valid",LoginController.validToken)
 
 app.post("/login", LoginController.login) 
 
-app.get('/logout',LoginController.logout)
+app.post('/logout',LoginController.logout)
 
 app.use('/registrosSonoros',registroSonoroRouter)
  
