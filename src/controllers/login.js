@@ -53,10 +53,12 @@ export class LoginController {
 
     static async logout(req,res){
 
-        res.clearCookie('access_token')
-
-        return res.json({ mesenjer: 'ok'})
-        
+        res.clearCookie('access_token', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'None'
+          });
+          return res.json({ message: 'Logout successful' });
     }
     static async validToken(req, res) {
         const valid = req.session.user;
