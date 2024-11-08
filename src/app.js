@@ -10,7 +10,7 @@ import { jwtMiddleware } from "./middlewares/jwt.js";
 import cors from 'cors'
 
 
-const allowedOrigins = ['https://htg8q1pp-5173.use.devtunnels.ms', 'https://m.imperiumsound.site', 'https://imperiumsound-movile-production.up.railway.app','https://imperiumsound.site','https://htg8q1pp-5173.use.devtunnels.ms','https://7xpgzwfn-5173.use2.devtunnels.ms', 'https://imperiumsound-frontend-production.up.railway.app'];
+const allowedOrigins = ['https://htg8q1pp-5173.use.devtunnels.ms', 'https://m.imperiumsound.site', 'https://imperiumsound-movile-production.up.railway.app','https://imperiumsound.site','https://htg8q1pp-5173.use.devtunnels.ms','https://7xpgzwfn-5173.use2.devtunnels.ms', 'https://imperiumsound-frontend-production.up.railway.app', 'https://htg8q1pp-5173.use.devtunnels.ms'];
 
 const corsOptions = {
   origin: (origin, callback) => {
